@@ -1,0 +1,50 @@
+h1{
+  color:red;
+}
+
+.links{
+  display:flex;
+  gap:20px;
+  color:white;
+
+}
+body{
+  background:linear-gradient(to left,black,white);
+ margin-top:0;
+  margin-left:0;
+  margin-right:0;
+}
+.navbar{
+  display:flex;
+  border:2px solid black;
+  justify-content:space-between;
+  gap:70px;
+  background-color:black;
+  height:80px;
+}
+/* ...existing code... */
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  body {
+    background: linear-gradient(to bottom, black, white);
+  }
+}
