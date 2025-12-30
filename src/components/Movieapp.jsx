@@ -6,7 +6,6 @@ function MovieApp({movie}) {
 
   const favour=isFavourites(movie.id)
 
-
       const handleButton=(event)=>{
           event.preventDefault() 
           if(favour) removeFavourites(movie.id)
