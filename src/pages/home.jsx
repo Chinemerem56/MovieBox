@@ -2,7 +2,7 @@ import Movieapp from "../components/Movieapp";
 import {useState,useEffect} from "react";
 import{searchMovies,getPopularMovies} from "../services/Api"
 
-function home(){
+function Home(){
    const array= useState("")
    const searchTerm =array[0];
    const setSearchTerm=array[1];
@@ -59,11 +59,12 @@ function home(){
 {error && <div className="error-message">{error}</div>}
 
       {loading ?(<div className="loading">Loading Movies...</div>):
-      (<div className="movie-list">
-      {movies.map((movie)=>
+      (
+      <div className="movie-list">
+      {movies.map((movie) => (<Movieapp movie={movie} key={movie.id} />))}
           
-          <Movieapp movie={movie} key={movie.id} />)}
+          
      </div>)}
      </div>)
 }
-export default home;
+export default Home;

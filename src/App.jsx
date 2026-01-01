@@ -1,7 +1,7 @@
 import{Routes,Route} from"react-router-dom" 
 import './App.css'
 import Home from './pages/home.jsx'
-import Favourities from './pages/Fvourities.jsx'
+import Favourities from './pages/Favourities.jsx'
 import{ MovieProvider }from './context/Moviecontext.jsx'
 import Navbar from './components/Navbar.jsx'
 

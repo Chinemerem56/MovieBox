@@ -16,7 +16,11 @@ function MovieApp({movie}) {
                   <div className="movie-app">
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}alt={movie.title} className="img-picture" />
                         <div className="movie-overlay">
-                             <button className= {`movie-button ${favour ? "active": ""}`} onClick={handleButton}>🤍</button>
+                             <button className= {`movie-button ${favour ? "active": ""}`} onClick={handleButton}
+            aria-label={favour ? "Remove from favourites" : "Add to favourites"}
+          >
+            🤍
+          </button>
                         </div>
                   </div>
                   <div className="movie-info">

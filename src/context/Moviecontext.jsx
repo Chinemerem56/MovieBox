@@ -1,47 +1,49 @@
-import{ useContext,createContext,useState,useEffect} from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
-const MovieContext= createContext();
+const MovieContext = createContext();
 
- export const useMovieContext = () => useContext(MovieContext);
+export const useMovieContext = () => useContext(MovieContext);
 
-export const MovieProvider= ({children}) => {
+export const MovieProvider = ({ children }) => {
+  const [favourites, setFavourites] = useState([]);
 
-  const [favours, setfavours] = useState([])
+  useEffect(() => {
+    const storedFavourites = localStorage.getItem("favourites");
 
-useEffect(()=> {
+    
+    if (storedFavourites) setFavourites(JSON.parse(storedFavourites));
+  }, []);
 
-      const storedFavs= localStorage.getItem("favours")
 
-      if(storedFavs) setfavours(JSON.parse(storedFavs))
-}, [])
- 
-    useEffect(()=>{
+useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+  }, [favourites]);
 
-      localStorage.setItem("favours", JSON.stringify(favours))
-    },[favours])
-
-    const addFavourites=(movie)=> {
-      setfavours(prev=> [...prev, movie])
+  const addFavourites = (movie) => {
+    // Check for duplicates before adding
+    if (!isFavourites(movie.id)) {
+      setFavourites((prev) => [...prev, movie]);
     }
+  };
 
-    const removeFavourites = (movieid)=> {
-      setfavours(prev=> prev.filter(movie=>movie.id!==movieid))
-            
-    }
-    const isFavourites=((movieId)=>{
-      return favours.some(movie=>movie.id === movieId)
-    })
+  const removeFavourites = (movieId) => {
+    setFavourites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
 
-    const value={
-      favours,
-      addFavourites,
-      removeFavourites,
-      isFavourites
-    }
-   return(
-     < MovieContext.Provider value={value}>
-     {children}
-     </MovieContext.Provider>
-   )
-}
+  const isFavourites = (movieId) => {
+    return favourites.some((movie) => movie.id === movieId);
+  };
 
+  const value = {
+    favourites,
+    addFavourites,
+  removeFavourites,
+    isFavourites,
+  };
+
+  return (
+    <MovieContext.Provider value={value}>
+      {children}
+    </MovieContext.Provider>
+  );
+};

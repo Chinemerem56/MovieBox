@@ -1,30 +1,30 @@
 import{ useMovieContext } from "../context/Moviecontext"
 import Movieapp from "../components/Movieapp"
 
-function Favourities(){
+function Favourities (){
 
-  const {kosi}= useMovieContext();
+  const { favourites } = useMovieContext ();
 
-  if (kosi) {
-
+  if (favourites && favourites.length > 0) {
       return (
       <div className="my-favourities-page">
             <h2>YOUR FAVOURITES</h2>
       <div className="movie-list">
-      {kosi.map((movie) =>(
-            <Movieapp movie={movie} key={movie.id} />))}
+      {favourites.map((movie) =>(
+            <Movieapp movie={movie} key={movie.id} />
+            ))}
         
      </div>
-     </div>)
-     }
-      
-     
+     </div>
+     );
+     }  else {
       return (
             <div className="favourities-page">
                   <h1>No Favourities Movie Yet</h1>
                   <p> Start Adding Movies To Your Favourities So That They Will Show Here</p>
             </div>
-      )
+      );
+}
   }
       
      
