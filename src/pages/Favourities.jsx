@@ -2,7 +2,6 @@ import{ useMovieContext } from "../context/Moviecontext"
 import Movieapp from "../components/Movieapp"
 
 function Favourities (){
-
   const { favourites } = useMovieContext ();
 
   if (favourites && favourites.length > 0) {
